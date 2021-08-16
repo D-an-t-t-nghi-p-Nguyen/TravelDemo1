@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="card profile-card-2 ">
+     <div class="card-body pt-5">
+         <img [src]="imageUrl" alt="profile-image" class="profile" width="50%">
+         <h5>Name: {{user.userName}}&nbsp;(<b class="b-role">{{user.role_id?.name}}</b>)</h5>
+         <p class="card-text">Email: {{user.emailId}}</p>
+     </div>
+     <br><br><br>
+     <div class="card-body border-top border-light">
+       </div>
+  </div>
+  <a [routerLink]="['/userlist']" >Black</a>
+  </div>

@@ -1,0 +1,193 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-lightx">
+  <a style="color: blue;" class="navbar-brand" [routerLink]=""><b>Travel the world</b></a>
+
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+  <div [ngbCollapse]="isMenuCollapsed" class="container collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/featuresblog']" (click)="isMenuCollapsed = true">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/ahometravel']" (click)="isMenuCollapsed = true">Travel</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/moveblog']" (click)="isMenuCollapsed = true">Move</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/newsblog']" (click)="isMenuCollapsed = true">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/supportblog']" (click)="isMenuCollapsed = true">Support</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contactblog']" (click)="isMenuCollapsed = true">Contact</a>
+        </li>
+    </ul>
+  </div>
+  <h2 *ngIf="user" >|</h2>
+  <div class="">
+    <div [ngbCollapse]="isMenuCollapsed" class="container collapse navbar-collapse">
+      <ul class="navbar-nav" *ngIf="user">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/viewuser']" >{{user.userName}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h2 *ngIf="user" >|</h2>
+  <div class="row" style="padding-right: 10px;">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user-circle-o" aria-hidden="true"></i> Account</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <a *ngIf="role === 1" routerLink="/dashboard" ngbDropdownItem>Admin Dashboard</a>
+          <a *ngIf="role === 2" routerLink="/admin" ngbDropdownItem>User Dashboard</a>
+            <li class="nav-item" *ngIf="!user">
+              <a [routerLink]="['/login']" ngbDropdownItem>Login</a>
+            </li>
+            <li  *ngIf="user">
+              <a (click)="logout()" href="http://localhost:4200/ahometravel" ngbDropdownItem>
+              logout</a>
+            </li>
+          <div class="dropdown-divider"></div>
+          <a [routerLink]="['/signup']" ngbDropdownItem>Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="../../../assets/images/LCFhQN.jpg" alt="Random third slide" style="width: 100%;height:500px;">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="../../../assets/images/Vietnam_hoi_an_sunset.jpg" alt="Random second slide" style="width: 100%;height:500px;">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="../../../assets/images/hinh-anh-tour-du-lich-ha-noi-singapore-indonesia-malaysia-bay-vietnam-airlines.jpg" alt="Random first slide" style="width: 100%;height:500px;">
+    </div>
+  </ng-template>
+</ngb-carousel>
+<div class="jumbotron">
+</div>
+
+
+    
+    
+<div class="site-section mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="owl-carousel slide-one-item with-dots">
+                <div><img [src]="urlImage" width="100%" alt="Image" class="img-fluid"></div>
+              </div>
+            </div>
+            <div class="col-lg-5 pl-lg-5 ml-auto">
+              <div class="mb-5">
+                <h3 class="text-black mb-4">{{item.name}}</h3>
+                <p>{{item.content}}</p>
+                <p>Số: {{item.address}}</p>             
+                <p>Giá vé: {{item.price}}</p>
+              </div>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">entrer des informations</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form #CreateForm="ngForm" (ngSubmit)="ngSubmit()">
+                    <!-- <div class="form-group">
+                      <label for="dateOfBirth">Date of birth</label>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><span class="fa fa-calendar"></span></button>
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="form-group">
+                      <label for="DateGo">Date go</label>
+                      <div class="input-group">
+                        <input id="DateGo" class="form-control" placeholder="Date go" name="date go"  [(ngModel)]="oder1.dateGo">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="amount">Amount</label>
+                      <div class="input-group">
+                        <input id="amount" class="form-control" placeholder="Amount" name="amount" [(ngModel)]="oder1.amount">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="number">Number</label>
+                      <div class="input-group">
+                        <input id="number" class="form-control" placeholder="number" name="number" [(ngModel)]="oder1.number">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-outline-dark" (click)="modal.close" [disabled]="CreateForm.form.invalid">Oder</button>
+                    </div>
+                  </form>
+                </div>
+
+              </ng-template>
+              
+              <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Oder</button>
+              
+              <hr>
+            </div>
+          </div>
+        </div>
+</div>
+<div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-8">
+                <div class="d-flex flex-column comment-section">
+                    <div class="bg-white p-2"*ngFor="let item of comments">
+                        <div class="d-flex flex-row user-info">
+                          <img class="rounded-circle" src="../../../../assets/images/{{item.user_id.avatar}}" width="40">
+                            <div class="d-flex flex-column justify-content-start ml-2">
+                              <span class="d-block font-weight-bold name">{{item.user_id.userName}}</span>
+                              <span class="date text-black-50">Shared publicly - {{item.datecomment | date : 'dd/MM/yyyy' }}</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">{{item.comment}}</p>
+                        </div>
+                    </div>
+                  <div class="container mb-5">
+                    <div>
+                      <form #CreateForm="ngForm" (ngSubmit)="Submit()">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="button" class="form-control" id="inputEmail4" value="{{user.emailId}}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputname4">Name</label>
+                            <input type="button" class="form-control" id="inputname4" value="{{user.userName}}">
+                          </div>
+                        </div>  
+                        <div class="form-group">
+                          <label>Comment</label>
+                          <textarea class="form-control"  [(ngModel)]="comment1.comment" name="commnet"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="CreateForm.form.invalid">Comment</button>
+                      </form>
+                    </div>
+                  
+                  </div>
+                </div>
+            </div>
+        </div>
+</div>
+<br><br><br>
+<br><br>
+      

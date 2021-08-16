@@ -1,0 +1,42 @@
+<div>
+    <a [routerLink]="['/travelvietnamadd']" class="btn rounded-btn"><i class="fa fa-plus" aria-hidden="true"></i> {{ 'Create' | translate }}</a>
+</div>
+<div class="card mb-3">
+    <div class="card-header">Blog travel Vietnam</div>
+    <div class="card-body table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Price</th>
+                    <th>Content</th>
+                    <th>Date Submit</th>
+                    <th>Image</th>
+                    <th>U</th>
+                    <th>V</th>
+                    <th>D</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of vn">
+                    <td>{{item.name}}</td>
+                    <td>{{item.address}}</td>
+                    <td>{{item.price}}</td>
+                    <td><textarea name="" id="" cols="" rows="1">{{item.content}}</textarea></td>
+                    <td>{{item.dateSubmit}}</td>
+                    <td><img src="./../../../assets/images//{{this.item.image}}" alt="" width="15" height="25"></td>
+                    <td>
+                      <button class="button" (click)=UpdateBlog(item.id) ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    </td>
+                    <td>
+                      <button class="button" (click)=ViewBlog(item.id)><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </td>
+                    <td>
+                        <button class="button" (click)=deleteBlog(item.id)><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
